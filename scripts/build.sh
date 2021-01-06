@@ -68,7 +68,7 @@ if [ $? -ne 0 ]; then
   exit 7
 fi
 
-if [ "${CURRENT_BRANCH}" = "${PUSH_BRANCH}"]; then
+if [ "${CURRENT_BRANCH}" = "${PUSH_BRANCH}" ]; then
   push ${DIR} ${BRANCH}
   if [ $? -ne 0 ]; then
     echo "Push failed" >&2
