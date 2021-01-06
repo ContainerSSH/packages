@@ -217,7 +217,7 @@ function debianrepo() {
     if [[ "$ASSET" == *.deb ]]; then
       FILENAME=$($BASENAME_BIN $ASSET)
       if [ ! -f "${DIR}/${FILENAME}" ]; then
-        github_download $ASSET $GITHUB_TOKEN >${FILENAME}
+        github_download $ASSET $GITHUB_TOKEN >${DIR}/${FILENAME}
         if [ $? -ne 0 ]; then
           echo "Failed to download asset '$ASSET'." >&2
           return 1
