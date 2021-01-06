@@ -198,7 +198,7 @@ function debianrepo() {
   GITHUB_TOKEN=$4
   echo "Downloading Debian packages..."
 
-  $MKDIR_BIN -p $DIR
+  $MKDIR_BIN -p $DIR && $MKDIR_BIN -p $DIR
   if [ $? -ne 0 ]; then
     echo "Failed to ensure Debian directory '$DIR' exists." >&2
     return 4
@@ -216,8 +216,8 @@ function debianrepo() {
   for ASSET in $ASSETS; do
     if [[ "$ASSET" == *.deb ]]; then
       FILENAME=$($BASENAME_BIN $ASSET)
-      if [ ! -f "${DIR}/${FILENAME}" ]; then
-        github_download $ASSET $GITHUB_TOKEN >${FILENAME}
+      if [ ! -f "${DIR}/binary/${FILENAME}" ]; then
+        github_download $ASSET $GITHUB_TOKEN >${DIR}/binary/${FILENAME}
         if [ $? -ne 0 ]; then
           echo "Failed to download asset '$ASSET'." >&2
           return 1
@@ -225,7 +225,7 @@ function debianrepo() {
       fi
     fi
   done
-  cd $DIR
+  cd $DIR/
   $DPKG_SCANPACKAGES_BIN --multiversion . >$DIR/Packages
   if [ $? -ne 0 ]; then
     echo "dpkg-scanpackages failed." >&2
