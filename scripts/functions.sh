@@ -237,11 +237,6 @@ function debianrepo() {
     echo "apt-ftparchive failed." >&2
     return 1
   fi
-  $GPGAGENT_BIN --daemon
-  if [ $? -ne 0 ]; then
-    echo "Failed to start GPG agent" >&2
-    exit 1
-  fi
   $GPG_BIN --batch --default-key "${GPG_EMAIL}" -abs -o - $DIR/Release > $DIR/Release.gpg
   if [ $? -ne 0 ]; then
     echo "Release.gpg failed" >&2
@@ -256,11 +251,10 @@ function debianrepo() {
 
 function import_gpg_key() {
   GPG_KEY=$1
-  $GPGAGENT_BIN --daemon
   if [ $? -ne 0 ]; then
     return $?
   fi
-  echo "${GPG_KEY}" | $BASE64_BIN -d | $GPG_BIN --batch --yes --import --pinentry-mode loopback --passphrase-fd 0 --passphrase ""
+  echo "${GPG_KEY}" | $BASE64_BIN -d | $GPG_BIN --batch --import
   return $?
 }
 
