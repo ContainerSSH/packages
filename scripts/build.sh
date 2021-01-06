@@ -22,7 +22,7 @@ DEBIAN_PATH=/debian
 # Only push if we are on this branch
 PUSH_BRANCH=${PUSH_BRANCH:-main}
 # Current branch to use for determining if push is needed
-CURRENT_BRANCH=${CURRENT_BRANCH:-$(cd $SRCDIR && $GIT_BIN branch | grep '*' | $SED_BIN -e 's/* //')}
+CURRENT_BRANCH=${CURRENT_BRANCH:-$(cd $SRCDIR && $GIT_BIN branch | $GREP_BIN '*' | $SED_BIN -e 's/\* //')}
 # REPO is the repository URL
 REPO=${REPO:-$($GIT_BIN remote -v | $HEAD_BIN -n 1 | $AWK_BIN ' { print $2 } ')}
 if [ ! -n $REPO ]; then
