@@ -250,6 +250,11 @@ function debianrepo() {
     echo "InRelease failed" >&2
     return 1
   fi
+  $GPG_BIN --armor --export "${GPG_EMAIL}" > $DIR/gpg
+    if [ $? -ne 0 ]; then
+    echo "GPG export failed" >&2
+    return 1
+  fi
 }
 
 function push() {
