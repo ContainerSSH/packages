@@ -9,7 +9,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Install packages
-        run: sudo apt-get install dpkg-dev rpm
+        run: sudo apt-get install dpkg-dev rpm gzip git gnupg
       - name: Run release
         run: ./scripts/build.sh
         env:
