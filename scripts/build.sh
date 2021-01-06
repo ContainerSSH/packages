@@ -31,10 +31,12 @@ if [ ! -n $REPO ]; then
 fi
 
 if [ -n "${GITHUB_ACTOR}" -a -n "${GITHUB_TOKEN}" ]; then
-  REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@$(echo $REPO | $SED_BIN -e 's#https://##')"
+  AUTH_REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@$(echo $REPO | $SED_BIN -e 's#https://##')"
+else
+  AUTH_REPO=$REPO
 fi
 
-clone $REPO $DIR
+clone $AUTH_REPO $DIR
 if [ $? -ne 0 ]; then
   echo "Failed to clone repository." >&2
   exit 5
@@ -46,7 +48,7 @@ if [ $? -ne 0 ]; then
   exit 6
 fi
 
-debianrepo ${DIR}${DEBIAN_PATH} $INCLUDE_REPOS $GPG_EMAIL $GITHUB_TOKEN
+debianrepo ${DIR}${DEBIAN_PATH} "$INCLUDE_REPOS" $GPG_EMAIL $GITHUB_TOKEN
 if [ $? -ne 0 ]; then
   echo "Failed to build debian repository." >&2
   exit 7

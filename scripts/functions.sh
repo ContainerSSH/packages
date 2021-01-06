@@ -65,32 +65,32 @@ export BASE64_BIN=${BASE64_BIN:-/usr/bin/base64}
 check_binary base64 BASE64_BIN $BASE64_BIN
 
 function clone() {
-  REPO=$1
-  DIR=$2
-  echo "Cloning or updating git repository at $DIR..."
-  if [ ! -d $DIR ]; then
-    $GIT_BIN clone $REPO $DIR
+  CLONEREPO=$1
+  TARGETDIR=$2
+  echo "Cloning or updating git repository at $TARGETDIR..."
+  if [ ! -d $TARGETDIR ]; then
+    $GIT_BIN clone $CLONEREPO $TARGETDIR
     if [ $? -ne 0 ]; then
-      echo "Failed to clone '$REPO' to '$DIR'." >&2
+      echo "Failed to clone to '$TARGETDIR'." >&2
       return 2
     fi
-  elif [ ! -d $DIR/.git ]; then
-    echo "Could not find .git directory in existing $DIR directory." >&2
+  elif [ ! -d $TARGETDIR/.git ]; then
+    echo "Could not find .git directory in existing $TARGETDIR directory." >&2
     return 2
   fi
-  cd $DIR
+  cd $TARGETDIR
   if [ $? -ne 0 ]; then
-    echo "Failed switch to '$DIR' directory." >&2
+    echo "Failed switch to '$TARGETDIR' directory." >&2
     return 2
   fi
   $GIT_BIN reset --hard >/dev/null
   if [ $? -ne 0 ]; then
-    echo "Failed to reset git repository at '$DIR'." >&2
+    echo "Failed to reset git repository at '$TARGETDIR'." >&2
     return 2
   fi
   $GIT_BIN clean -fd >/dev/null
   if [ $? -ne 0 ]; then
-    echo "Failed to clean git repository at '$DIR'." >&2
+    echo "Failed to clean git repository at '$TARGETDIR'." >&2
     return 2
   fi
   CURRENT_BRANCH=$($GIT_BIN branch 2>/dev/null)
@@ -154,20 +154,20 @@ function github_download() {
 }
 
 function get_release_assets() {
-  REPO=$1
+  RELEASE_REPO=$1
   RELEASE_ID=$2
   GITHUB_TOKEN=$3
-  github /repos/$REPO/releases/$RELEASE_ID/assets $GITHUB_TOKEN | $JQ_BIN '.[].browser_download_url | @text' | $SED_BIN -e 's/"/ /g'
+  github /repos/$RELEASE_REPO/releases/$RELEASE_ID/assets $GITHUB_TOKEN | $JQ_BIN '.[].browser_download_url | @text' | $SED_BIN -e 's/"/ /g'
   if [ $? -ne 0 ]; then
-    echo "Failed to fetch assets for $REPO release $RELEASE_ID." >&2
+    echo "Failed to fetch assets for $RELEASE_REPO release $RELEASE_ID." >&2
     return 1
   fi
 }
 
 function get_repo_assets() {
-  REPO=$1
+  RELEASE_REPO=$1
   GITHUB_TOKEN=$2
-  RELEASES=$(github /repos/$REPO/releases $GITHUB_TOKEN | $JQ_BIN '.[].id | @text' | $SED_BIN -e 's/"/ /g')
+  RELEASES=$(github /repos/$RELEASE_REPO/releases $GITHUB_TOKEN | $JQ_BIN '.[].id | @text' | $SED_BIN -e 's/"/ /g')
   if [ $? -ne 0 ]; then
     echo "Failed to list releases." >&2
     return 1
