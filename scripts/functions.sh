@@ -28,13 +28,13 @@ check_binary dpkg-scanpackages DPKG_SCANPACKAGES_BIN $DPKG_SCANPACKAGES_BIN
 export GIT_BIN=${GIT_BIN:-/usr/bin/git}
 check_binary git GIT_BIN $GIT_BIN
 
-export HEAD_BIN=${HEAD_BIN:-/bin/head}
+export HEAD_BIN=${HEAD_BIN:-/usr/bin/head}
 check_binary head HEAD_BIN $HEAD_BIN
 
-export AWK_BIN=${AWK_BIN:-/bin/awk}
+export AWK_BIN=${AWK_BIN:-/usr/bin/awk}
 check_binary awk AWK_BIN $AWK_BIN
 
-export RSYNC_BIN=${RSYNC_BIN:-/bin/rsync}
+export RSYNC_BIN=${RSYNC_BIN:-/usr/bin/rsync}
 check_binary rsync RSYNC_BIN $RSYNC_BIN
 
 export REALPATH_BIN=${REALPATH_BIN:-/bin/realpath}
