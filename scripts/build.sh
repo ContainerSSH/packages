@@ -74,4 +74,6 @@ if [ "${CURRENT_BRANCH}" = "${PUSH_BRANCH}" ]; then
     echo "Push failed" >&2
     exit 8
   fi
+else
+  echo "Current branch (${CURRENT_BRANCH}) doesn't match push branch (${PUSH_BRANCH}), skipping deployment."
 fi
