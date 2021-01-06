@@ -162,8 +162,8 @@ function get_release_assets() {
 function get_repo_assets() {
   REPO=$1
   GITHUB_TOKEN=$2
-  RELEASES=$(github /repos/$REPO/releases $GITHUB_TOKEN | $JQ_BIN '.[].id | @text' | $SED_BIN -e 's/"/ /g'; exit $PIPESTATUS)
-  if [ $RC -ne 0 ]; then
+  RELEASES=$(github /repos/$REPO/releases $GITHUB_TOKEN | $JQ_BIN '.[].id | @text' | $SED_BIN -e 's/"/ /g')
+  if [ $? -ne 0 ]; then
     echo "Failed to list releases." >&2
     return 1
   fi
