@@ -13,6 +13,9 @@ function check_binary() {
 export GPG_BIN=${GPG_BIN:-/usr/bin/gpg}
 check_binary gpg GPG_BIN $GPG_BIN
 
+export GPGAGENT_BIN=${GPGAGENT_BIN:-/usr/bin/gpg-agent}
+check_binary gpg-agent GPGAGENT_BIN $GPGAGENT_BIN
+
 export GREP_BIN=${GREP_BIN:-/bin/grep}
 check_binary grep GREP_BIN $GREP_BIN
 
@@ -121,13 +124,13 @@ function github() {
   URI=$1
   GITHUB_TOKEN=$2
   if [ -n "$GITHUB_TOKEN" ]; then
-    $CURL_BIN --fail-early -f --no-progress-meter \
+    $CURL_BIN --fail-early -f -q \
       -H "Authorization: token ${GITHUB_TOKEN}" \
       -H "Accept: application/vnd.github.v3+json" \
       https://api.github.com$URI
     return $?
   else
-    $CURL_BIN --fail-early -f --no-progress-meter \
+    $CURL_BIN --fail-early -f -q \
       -H "Accept: application/vnd.github.v3+json" \
       https://api.github.com$URI
     return $?
@@ -138,11 +141,11 @@ function github_download() {
   URL=$1
   GITHUB_TOKEN=$2
   if [ -n "$GITHUB_TOKEN" ]; then
-    $CURL_BIN --fail-early -f -L --no-progress-meter \
+    $CURL_BIN --fail-early -f -L -q \
       -H "Authorization: token ${GITHUB_TOKEN}" \
       $URL
   else
-    $CURL_BIN --fail-early -f -L --no-progress-meter \
+    $CURL_BIN --fail-early -f -L -q \
       $URL
   fi
   return $?
@@ -234,12 +237,17 @@ function debianrepo() {
     echo "apt-ftparchive failed." >&2
     return 1
   fi
-  $GPG_BIN --default-key "${GPG_EMAIL}" -abs -o - $DIR/Release > $DIR/Release.gpg
+  $GPGAGENT_BIN --daemon
+  if [ $? -ne 0 ]; then
+    echo "Failed to start GPG agent" >&2
+    exit 1
+  fi
+  $GPG_BIN --batch --default-key "${GPG_EMAIL}" -abs -o - $DIR/Release > $DIR/Release.gpg
   if [ $? -ne 0 ]; then
     echo "Release.gpg failed" >&2
     return 1
   fi
-  $GPG_BIN --default-key "${GPG_EMAIL}" --clearsign -o - $DIR/Release > $DIR/InRelease
+  $GPG_BIN --batch --default-key "${GPG_EMAIL}" --clearsign -o - $DIR/Release > $DIR/InRelease
   if [ $? -ne 0 ]; then
     echo "InRelease failed" >&2
     return 1
@@ -248,7 +256,11 @@ function debianrepo() {
 
 function import_gpg_key() {
   GPG_KEY=$1
-  echo "${GPG_KEY}" | $BASE64_BIN -d | $GPG_BIN --batch --import
+  $GPGAGENT_BIN --daemon
+  if [ $? -ne 0 ]; then
+    return $?
+  fi
+  echo "${GPG_KEY}" | $BASE64_BIN -d | $GPG_BIN --batch --yes --import --pinentry-mode loopback --passphrase-fd 0 --passphrase ""
   return $?
 }
 
