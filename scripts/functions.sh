@@ -173,7 +173,7 @@ function get_repo_assets() {
     return 1
   fi
   for RELEASE_ID in $RELEASES; do
-    get_release_assets $REPO $RELEASE_ID $GITHUB_TOKEN
+    get_release_assets $RELEASE_REPO $RELEASE_ID $GITHUB_TOKEN
     if [ $? -ne 0 ]; then
       return 1
     fi
