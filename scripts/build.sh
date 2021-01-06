@@ -30,7 +30,11 @@ if [ ! -n $REPO ]; then
   exit 1
 fi
 
-clone
+if [ -n "${GITHUB_ACTOR}" -a -n "${GITHUB_TOKEN}" ]; then
+  REPO="https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@$(echo $REPO | $SED_BIN -e 's#https://##')"
+fi
+
+clone $REPO $DIR
 if [ $? -ne 0 ]; then
   echo "Failed to clone repository." >&2
   exit 5

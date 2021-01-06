@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Install packages
         run: sudo apt-get install dpkg-dev rpm gzip git gnupg rsync jq
       - name: Import signing key

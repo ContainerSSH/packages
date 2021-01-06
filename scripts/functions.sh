@@ -65,6 +65,8 @@ export BASE64_BIN=${BASE64_BIN:-/usr/bin/base64}
 check_binary base64 BASE64_BIN $BASE64_BIN
 
 function clone() {
+  REPO=$1
+  DIR=$2
   echo "Cloning or updating git repository at $DIR..."
   if [ ! -d $DIR ]; then
     $GIT_BIN clone $REPO $DIR
