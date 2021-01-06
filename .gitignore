@@ -1,0 +1,9 @@
+.idea
+*.iml
+*.tfvars
+*.tfstate
+*.tfstate*
+*lock*
+.terraform
+gh-pages
+home
