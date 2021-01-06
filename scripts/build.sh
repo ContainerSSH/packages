@@ -22,7 +22,7 @@ DEBIAN_PATH=/debian
 # Only push if we are on this branch
 PUSH_BRANCH=${PUSH_BRANCH:-main}
 # Current branch to use for determining if push is needed
-CURRENT_BRANCH=${CURRENT_BRANCH:-$(cd $SRCDIR && $GIT_BIN symbolic-ref HEAD | $SED_BIN -e 's#refs/heads/##')}
+REPO_BRANCH=${REPO_BRANCH:-$(cd $SRCDIR && $GIT_BIN symbolic-ref HEAD | $SED_BIN -e 's#refs/heads/##')}
 # REPO is the repository URL
 REPO=${REPO:-$($GIT_BIN remote -v | $HEAD_BIN -n 1 | $AWK_BIN ' { print $2 } ')}
 if [ ! -n $REPO ]; then
@@ -48,12 +48,12 @@ if [ $? -ne 0 ]; then
   exit 7
 fi
 
-if [ "${CURRENT_BRANCH}" = "${PUSH_BRANCH}" ]; then
+if [ "${REPO_BRANCH}" = "${PUSH_BRANCH}" ]; then
   push ${DIR} ${BRANCH}
   if [ $? -ne 0 ]; then
     echo "Push failed" >&2
     exit 8
   fi
 else
-  echo "Current branch (${CURRENT_BRANCH}) doesn't match push branch (${PUSH_BRANCH}), skipping deployment."
+  echo "Current branch (${REPO_BRANCH}) doesn't match push branch (${PUSH_BRANCH}), skipping deployment."
 fi

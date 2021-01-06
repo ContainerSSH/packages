@@ -194,6 +194,7 @@ function debianrepo() {
   SOURCE_REPOS=$2
   GPG_EMAIL=$3
   GITHUB_TOKEN=$4
+  echo "Downloading Debian packages..."
 
   $MKDIR_BIN -p $DIR
   if [ $? -ne 0 ]; then
