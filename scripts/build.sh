@@ -48,6 +48,7 @@ import_gpg_key $GPG_KEY
 if [ $? -ne 0 ]; then
   echo "GPG key import failed" >&2
   exit 4
+fi
 
 clone
 if [ $? -ne 0 ]; then
