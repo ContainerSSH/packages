@@ -29,26 +29,6 @@ if [ ! -n $REPO ]; then
   echo "Could not determine remote for GitHub pages. Please provide the REPO parameter with a remote to push to."
   exit 1
 fi
-# TMP_HOME is the temporary home directory for GPG keys, etc.
-TMP_HOME=${TMP_HOME:-$($REALPATH_BIN ${SCRIPT_DIR}/../home)}
-
-if [ -z "$GPG_KEY" ]; then
-  echo "The GPG_KEY environment variable must be set." >&2
-  exit 2
-fi
-
-if [ ! -d $TMP_HOME ]; then
-  $MKDIR_BIN -p $TMP_HOME
-  if [ $? -ne 0 ]; then
-    exit 3
-  fi
-fi
-HOME=$TMP_HOME
-import_gpg_key $GPG_KEY
-if [ $? -ne 0 ]; then
-  echo "GPG key import failed" >&2
-  exit 4
-fi
 
 clone
 if [ $? -ne 0 ]; then

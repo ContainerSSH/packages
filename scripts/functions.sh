@@ -249,15 +249,6 @@ function debianrepo() {
   fi
 }
 
-function import_gpg_key() {
-  GPG_KEY=$1
-  if [ $? -ne 0 ]; then
-    return $?
-  fi
-  echo "${GPG_KEY}" | $BASE64_BIN -d | $GPG_BIN --batch --import
-  return $?
-}
-
 function push() {
   echo "Pushing website"
   DIR=$1
