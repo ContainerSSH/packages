@@ -25,7 +25,7 @@ check_binary apt-ftparchive APT_FTPARCHIVE_BIN $APT_FTPARCHIVE_BIN
 export DPKG_SCANPACKAGES_BIN=${DPKG_SCANPACKAGES_BIN:-/usr/bin/dpkg-scanpackages}
 check_binary dpkg-scanpackages DPKG_SCANPACKAGES_BIN $DPKG_SCANPACKAGES_BIN
 
-export GIT_BIN=${GIT_BIN:-/bin/git}
+export GIT_BIN=${GIT_BIN:-/usr/bin/git}
 check_binary git GIT_BIN $GIT_BIN
 
 export HEAD_BIN=${HEAD_BIN:-/bin/head}
