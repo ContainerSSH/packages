@@ -3,7 +3,7 @@ Version: 0.9.0
 Architecture: amd64
 Maintainer: Janos Pasztor <handshake@containerssh.io>
 Installed-Size: 1569
-Filename: /home/runner/work/packages/packages/gh-pages/debian/agent_0.9.0_linux_amd64.deb
+Filename: ./agent_0.9.0_linux_amd64.deb
 Size: 659196
 MD5sum: 3bd68e2c0ca0505e6374ad3866750677
 SHA1: 9b7a2dd801fdbaae9c0ae6742ddf7a8ed7f7ead8
@@ -17,7 +17,7 @@ Version: 0.9.1
 Architecture: amd64
 Maintainer: Janos Pasztor <handshake@containerssh.io>
 Installed-Size: 1569
-Filename: /home/runner/work/packages/packages/gh-pages/debian/agent_0.9.1_linux_amd64.deb
+Filename: ./agent_0.9.1_linux_amd64.deb
 Size: 659202
 MD5sum: 6835087c5699f097506607d8c099d428
 SHA1: a80a2764251a22a04942502c9320e32d1d3d5a48
