@@ -225,7 +225,8 @@ function debianrepo() {
       fi
     fi
   done
-  $DPKG_SCANPACKAGES_BIN --multiversion $DIR >$DIR/Packages
+  cd $DIR
+  $DPKG_SCANPACKAGES_BIN --multiversion . >$DIR/Packages
   if [ $? -ne 0 ]; then
     echo "dpkg-scanpackages failed." >&2
     return 1
