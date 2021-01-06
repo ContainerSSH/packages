@@ -37,7 +37,7 @@ if [ -z "$GPG_KEY" ]; then
   exit 2
 fi
 
-if [ !-d $TMP_HOME ]; then
+if [ ! -d $TMP_HOME ]; then
   $MKDIR_BIN -p $TMP_HOME
   if [ $? -ne 0 ]; then
     exit 3
