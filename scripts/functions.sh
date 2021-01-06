@@ -37,7 +37,7 @@ check_binary awk AWK_BIN $AWK_BIN
 export RSYNC_BIN=${RSYNC_BIN:-/usr/bin/rsync}
 check_binary rsync RSYNC_BIN $RSYNC_BIN
 
-export REALPATH_BIN=${REALPATH_BIN:-/bin/realpath}
+export REALPATH_BIN=${REALPATH_BIN:-/usr/bin/realpath}
 check_binary realpath REALPATH_BIN $REALPATH_BIN
 
 export JQ_BIN=${JQ_BIN:-/usr/bin/jq}
