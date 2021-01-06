@@ -68,9 +68,10 @@ if [ $? -ne 0 ]; then
   exit 7
 fi
 
-if [ -n "${GITHUB_TOKEN}" -a "${CURRENT_BRANCH}" = "${PUSH_BRANCH}"]; then
-  push ${DIR} ${BRANCH} ${GITHUB_TOKEN}
+if [ "${CURRENT_BRANCH}" = "${PUSH_BRANCH}"]; then
+  push ${DIR} ${BRANCH}
   if [ $? -ne 0 ]; then
     echo "Push failed" >&2
     exit 8
+  fi
 fi

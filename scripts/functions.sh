@@ -259,11 +259,12 @@ function import_gpg_key() {
 }
 
 function push() {
+  echo "Pushing website"
   DIR=$1
   BRANCH=$2
   $GIT_BIN --config user.name=ContainerSSH && \
-  $GIT_BIN --config user.email=$GPG_EMAIL && \
-  $GIT_BIN --config commit.gpgsign=true
+    $GIT_BIN --config user.email=$GPG_EMAIL && \
+    $GIT_BIN --config commit.gpgsign=true
   if [ $? -ne 0 ]; then
     return $?
   fi
