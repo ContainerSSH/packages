@@ -121,13 +121,13 @@ function github() {
   URI=$1
   GITHUB_TOKEN=$2
   if [ -n "$GITHUB_TOKEN" ]; then
-    $CURL_BIN --fail-early -f --no-progress-meter \
+    $CURL_BIN --fail-early -f -q \
       -H "Authorization: token ${GITHUB_TOKEN}" \
       -H "Accept: application/vnd.github.v3+json" \
       https://api.github.com$URI
     return $?
   else
-    $CURL_BIN --fail-early -f --no-progress-meter \
+    $CURL_BIN --fail-early -f -q \
       -H "Accept: application/vnd.github.v3+json" \
       https://api.github.com$URI
     return $?
@@ -138,11 +138,11 @@ function github_download() {
   URL=$1
   GITHUB_TOKEN=$2
   if [ -n "$GITHUB_TOKEN" ]; then
-    $CURL_BIN --fail-early -f -L --no-progress-meter \
+    $CURL_BIN --fail-early -f -L -q \
       -H "Authorization: token ${GITHUB_TOKEN}" \
       $URL
   else
-    $CURL_BIN --fail-early -f -L --no-progress-meter \
+    $CURL_BIN --fail-early -f -L -q \
       $URL
   fi
   return $?
