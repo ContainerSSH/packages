@@ -13,7 +13,7 @@ function check_binary() {
 export GPG_BIN=${GPG_BIN:-/usr/bin/gpg}
 check_binary gpg GPG_BIN $GPG_BIN
 
-export GREP_BIN=${GREP_BIN:-/usr/bin/grep}
+export GREP_BIN=${GREP_BIN:-/bin/grep}
 check_binary grep GREP_BIN $GREP_BIN
 
 export GZIP_BIN=${GZIP_BIN:-/usr/bin/gzip}
