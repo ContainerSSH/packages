@@ -55,7 +55,7 @@ check_binary rm RM_BIN $RM_BIN
 export SED_BIN=${SED_BIN:-/bin/sed}
 check_binary sed SED_BIN $SED_BIN
 
-export BASENAME_BIN=${BASENAME_BIN:-/bin/basename}
+export BASENAME_BIN=${BASENAME_BIN:-/usr/bin/basename}
 check_binary basename BASENAME_BIN $BASENAME_BIN
 
 export BASE64_BIN=${BASE64_BIN:-/usr/bin/base64}
