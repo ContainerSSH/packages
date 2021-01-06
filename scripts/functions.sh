@@ -16,7 +16,7 @@ check_binary gpg GPG_BIN $GPG_BIN
 export GREP_BIN=${GREP_BIN:-/bin/grep}
 check_binary grep GREP_BIN $GREP_BIN
 
-export GZIP_BIN=${GZIP_BIN:-/usr/bin/gzip}
+export GZIP_BIN=${GZIP_BIN:-/bin/gzip}
 check_binary gzip GZIP_BIN $GZIP_BIN
 
 export APT_FTPARCHIVE_BIN=${APT_FTPARCHIVE_BIN:-/usr/bin/apt-ftparchive}
@@ -25,19 +25,19 @@ check_binary apt-ftparchive APT_FTPARCHIVE_BIN $APT_FTPARCHIVE_BIN
 export DPKG_SCANPACKAGES_BIN=${DPKG_SCANPACKAGES_BIN:-/usr/bin/dpkg-scanpackages}
 check_binary dpkg-scanpackages DPKG_SCANPACKAGES_BIN $DPKG_SCANPACKAGES_BIN
 
-export GIT_BIN=${GIT_BIN:-/usr/bin/git}
+export GIT_BIN=${GIT_BIN:-/bin/git}
 check_binary git GIT_BIN $GIT_BIN
 
-export HEAD_BIN=${HEAD_BIN:-/usr/bin/head}
+export HEAD_BIN=${HEAD_BIN:-/bin/head}
 check_binary head HEAD_BIN $HEAD_BIN
 
-export AWK_BIN=${AWK_BIN:-/usr/bin/awk}
+export AWK_BIN=${AWK_BIN:-/bin/awk}
 check_binary awk AWK_BIN $AWK_BIN
 
-export RSYNC_BIN=${RSYNC_BIN:-/usr/bin/rsync}
+export RSYNC_BIN=${RSYNC_BIN:-/bin/rsync}
 check_binary rsync RSYNC_BIN $RSYNC_BIN
 
-export REALPATH_BIN=${REALPATH_BIN:-/usr/bin/realpath}
+export REALPATH_BIN=${REALPATH_BIN:-/bin/realpath}
 check_binary realpath REALPATH_BIN $REALPATH_BIN
 
 export JQ_BIN=${JQ_BIN:-/usr/bin/jq}
