@@ -257,6 +257,7 @@ function push() {
   $GIT_BIN config --global user.name ContainerSSH && \
     $GIT_BIN config --global user.email $GPG_EMAIL && \
     $GIT_BIN config --global commit.gpgsign true
+    $GIT_BIN config --global user.signingkey $GPG_EMAIL
   if [ $? -ne 0 ]; then
     return 1
   fi
