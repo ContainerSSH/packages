@@ -1,0 +1,28 @@
+Package: containerssh-agent
+Version: 0.9.0
+Architecture: amd64
+Maintainer: Janos Pasztor <handshake@containerssh.io>
+Installed-Size: 1569
+Filename: /home/runner/work/packages/packages/gh-pages/debian/agent_0.9.0_linux_amd64.deb
+Size: 659196
+MD5sum: 3bd68e2c0ca0505e6374ad3866750677
+SHA1: 9b7a2dd801fdbaae9c0ae6742ddf7a8ed7f7ead8
+SHA256: ac68022d6bc03b73ffb0f38690c33f8a6d4ee3d97750966ca03a7fde9fec60d5
+Homepage: https://containerssh.io
+Description: The guest agent for ContainerSSH, an SSH server that launches containers on demand.
+Vendor: ContainerSSH
+
+Package: containerssh-agent
+Version: 0.9.1
+Architecture: amd64
+Maintainer: Janos Pasztor <handshake@containerssh.io>
+Installed-Size: 1569
+Filename: /home/runner/work/packages/packages/gh-pages/debian/agent_0.9.1_linux_amd64.deb
+Size: 659202
+MD5sum: 6835087c5699f097506607d8c099d428
+SHA1: a80a2764251a22a04942502c9320e32d1d3d5a48
+SHA256: c4c1078a7bdd855cc71c5d7933882e9c4144afdfff213adb321f1ebc00ab7428
+Homepage: https://containerssh.io
+Description: The guest agent for ContainerSSH, an SSH server that launches containers on demand.
+Vendor: ContainerSSH
+
