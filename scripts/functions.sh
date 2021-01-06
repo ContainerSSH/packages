@@ -46,16 +46,16 @@ check_binary jq JQ_BIN $JQ_BIN
 export CURL_BIN=${CURL_BIN:-/usr/bin/curl}
 check_binary curl CURL_BIN $CURL_BIN
 
-export MKDIR_BIN=${MKDIR_BIN:-/usr/bin/mkdir}
+export MKDIR_BIN=${MKDIR_BIN:-/bin/mkdir}
 check_binary mkdir MKDIR_BIN $MKDIR_BIN
 
-export RM_BIN=${RM_BIN:-/usr/bin/rm}
+export RM_BIN=${RM_BIN:-/bin/rm}
 check_binary rm RM_BIN $RM_BIN
 
-export SED_BIN=${SED_BIN:-/usr/bin/sed}
+export SED_BIN=${SED_BIN:-/bin/sed}
 check_binary sed SED_BIN $SED_BIN
 
-export BASENAME_BIN=${BASENAME_BIN:-/usr/bin/basename}
+export BASENAME_BIN=${BASENAME_BIN:-/bin/basename}
 check_binary basename BASENAME_BIN $BASENAME_BIN
 
 export BASE64_BIN=${BASE64_BIN:-/usr/bin/base64}
